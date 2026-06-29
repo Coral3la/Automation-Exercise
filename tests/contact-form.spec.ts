@@ -1,7 +1,7 @@
 import { test, expect } from "@playwright/test";
 import { ContactPage, valid, nonsense } from "../pages/ContactPage";
 
-test.describe("ACME contact form", () => {
+test.describe("Contact form — Request a call back", () => {
   let form: ContactPage;
 
   test.beforeEach(async ({ page }) => {
