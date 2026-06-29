@@ -1,0 +1,23 @@
+{
+  "name": "jones-automation-exercise",
+  "version": "1.0.0",
+  "description": "Playwright + TypeScript automation for the contact form at test.netlify.app",
+  "type": "module",
+  "scripts": {
+    "test": "playwright test",
+    "test:headed": "playwright test --headed",
+    "report": "playwright show-report"
+  },
+  "keywords": [
+    "playwright",
+    "typescript",
+    "automation",
+    "testing",
+    "e2e"
+  ],
+  "license": "ISC",
+  "devDependencies": {
+    "@playwright/test": "^1.61.1",
+    "@types/node": "^26.0.1"
+  }
+}
