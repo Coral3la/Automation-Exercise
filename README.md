@@ -30,17 +30,19 @@ short and readable and there is a single place to update if the form changes.
    rejected (`validity.typeMismatch`).
 4. **Invalid website URL is blocked** — enters a value with no protocol and confirms
    it is rejected (`validity.typeMismatch`).
-5. **Accepts nonsense data (documents weak validation)** — see bug note below.
-6. **Bonus: 51-500 employees** — selects the non-default dropdown option and confirms
-   the value before submitting.
+5. **Junk data should be rejected** — asserts the form *should* block structurally-valid
+   junk (name `j`, phone `00`); see bug note below.
+6. **Bonus: employees change from 1-10 to 51-500** — confirms the default is `1-10`,
+   changes it to `51-500`, and verifies the new value before submitting.
 
 ## Bug found
 
 The form relies only on native HTML5 validation (`required`, `type="email"`,
-`type="url"`). It enforces *structural* validity but not *sensible* values: input like
-name `j`, email `gg@j.j`, and phone `00` is accepted and reaches the thank-you page.
-Test 5 documents this gap on purpose — it passes because the form accepts the bad data.
-If validation were later tightened, that test would fail and flag the change.
+`type="url"`). It enforces _structural_ validity but not _sensible_ values: input like
+name `j`, email `j@d.c`, and phone `00` is accepted and reaches the thank-you page.
+Test 5 asserts the *desired* behavior (this junk should be rejected) and is marked
+`test.fail()`: it stays green while the bug exists and fails loudly the day real
+validation is added — flagging the change instead of silently breaking.
 
 ## How to run
 

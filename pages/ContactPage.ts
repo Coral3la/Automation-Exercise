@@ -8,7 +8,7 @@ export const valid = {
   phone: "0500000000",
   company: "John Doe Real-Estate",
   website: "https://johnrealestate.com",
-  employees: "51-500",
+  employees: "1-10",
 };
 
 export const nonsense = {

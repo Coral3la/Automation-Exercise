@@ -38,15 +38,17 @@ test.describe("Contact form — Request a call back", () => {
     await expect(form.website).toHaveJSProperty("validity.typeMismatch", true);
   });
 
-  // BUG: form accepts nonsense values that are structurally valid (e.g. name "j", phone "00").
-  test("accepts nonsense data — documents weak validation", async () => {
+  test("junk data should be rejected", async () => {
+    test.fail();
     await form.fill(nonsense);
     await form.submit();
-    await form.expectSuccess();
+    await form.expectBlocked(form.name);
   });
 
-  test("bonus: 51-500 employees selected", async () => {
+  test("bonus: employees changes from 1-10 to 51-500", async () => {
+    await expect(form.employees).toHaveValue("1-10");
     await form.fill(valid);
+    await form.employees.selectOption("51-500");
     await expect(form.employees).toHaveValue("51-500");
     await form.submit();
     await form.expectSuccess();
